@@ -107,7 +107,6 @@ Every time we make a prediction, we store it in a “chain”:
 - **Linux:** Press `Ctrl + Alt + T`.
 
 Then navigate to the project folder:
-```bash
 cd C:\my_project   # Windows example
 cd ~/Desktop/my_project   # Mac/Linux example
 
