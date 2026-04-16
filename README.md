@@ -29,7 +29,7 @@ Without a model, Amazon has to wait for human votes. With a model, helpfulness c
 
 ## What data do we use?
 
-We use an Amazon product review dataset (you provide the file `output.csv`). The dataset contains:
+We use an Amazon product review dataset (you provide the file `dataset.csv`). The dataset contains:
 
 - `reviewerID`, `reviewerName` – removed (not useful)
 - `asin` – Amazon Standard Identification Number (unique product ID)
