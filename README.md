@@ -61,7 +61,7 @@ For each review, we created many features:
 | **Sentiment score** | Used VADER sentiment analyzer to get a compound score (-1 to +1) |
 | **Star rating** | The `overall` column (1–5) |
 | **Product category** | One‑hot encoding of the category (e.g., `cat_microphone=1` if product is a microphone) |
-| **BERT emotions** | Used a pre‑trained DistilBERT model (bhadresh‑savani/distilbert‑base‑uncased‑emotion) to extract probabilities for 6 emotions: sadness, joy, love, anger, fear, surprise |
+| **BERT emotions** | Used a pre‑trained DistilBERT model to extract probabilities for 6 emotions: sadness, joy, love, anger, fear, surprise |
 
 All features were combined into a single numeric matrix `X_all` with thousands of columns (the TF‑IDF features plus the others).
 
@@ -74,3 +74,53 @@ We split the data into 80% training, 20% testing. The model was trained for 100 
 ### Step 4 – Evaluation
 
 On the test set, the model achieved:
+
+ - Accuracy: ~0.78
+ - Precision: ~0.76
+ - Recall: ~0.72
+ - F1-score: ~0.74
+ - AUC: ~0.84
+
+(Exact numbers depend on the dataset and random split.)
+
+The ROC curve (in the code) shows that the model is much better than random guessing.
+
+### Step 5 – Prediction chain (blockchain demonstration)
+
+To show that predictions are verifiable and cannot be changed later, we implemented a simple **chain of blocks**:
+
+- Each block contains: prediction result, a short excerpt of the review, a hash of the features, the hash of the previous block, a timestamp.
+- If anyone changes a past prediction, the hash will change, breaking the chain.
+- You can verify the chain using `verify_chain()`.
+
+This is a small‑scale demonstration of how blockchain can be used to audit machine learning predictions.
+
+### Step 6 – Reviewer rewards system
+
+We also built a **reward system**:
+
+- If a review is both **actually helpful** (helpful_ratio ≥ 0.7) and **predicted as helpful**, the reviewer earns 10 reward points.
+- Points can be converted into discount codes (simulated).
+- We visualise rewards by product and the distribution of helpfulness ratios.
+
+This shows how a business could incentivise high‑quality reviews.
+
+## How to run this project on your own laptop (Google Colab recommended) but you can use code editors like vscode also?
+
+Initially the code for this project is written for **Google Colab**. It uses a GPU (free in Colab) to run XGBoost and BERT faster.
+
+### Step 1 – Open Google Colab
+
+Go to [colab.research.google.com](https://colab.research.google.com) and create a new notebook.
+
+### Step 2 – Upload your dataset
+
+You need a file named `output.csv` (Amazon review dataset). Upload it to the Colab environment using the file upload icon on the left sidebar.
+
+Alternatively, mount Google Drive:
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+
+and copy the file to /content/.
