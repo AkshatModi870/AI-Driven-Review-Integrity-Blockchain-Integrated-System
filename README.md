@@ -157,25 +157,25 @@ The model will predict whether that review would be helpful or not.
 
 Example:
 
-Enter ASIN (must be from the dataset): B00006I5VH
-Enter Review Text: This microphone is amazing. Clear sound, easy to set up.
-Enter Overall Rating (1-5): 5
-Enter Summary (optional): Great mic
+ - Enter ASIN (must be from the dataset): B00006I5VH
+ - Enter Review Text: This microphone is amazing. Clear sound, easy to set up.
+ - Enter Overall Rating (1-5): 5
+ - Enter Summary (optional): Great mic
 
 Output:
 
-✅ Helpful review detected! You have to modify your product.
-🛍️ Product Category: MICROPHONE
-🎯 Predicted Helpfulness Score: 0.87
+ - ✅ Helpful review detected! You have to modify your product.
+ - 🛍️ Product Category: MICROPHONE
+ - 🎯 Predicted Helpfulness Score: 0.87
 
 ## Understanding the output graphs
 
 The code produces several figures:
 
-Fig. 1: Review Text Length vs Helpfulness Ratio – longer reviews are not always more helpful; there is a sweet spot.
-Fig. 2: Star Rating vs Helpfulness Ratio – very low (1 star) and very high (5 star) reviews tend to be more helpful than middle ratings.
-Fig. 3: Review Text Length vs Star Rating – shows how review length varies with rating.
-Fig. 4: Average BERT Emotion Scores by Helpfulness – helpful reviews have slightly higher “joy” and “surprise” scores, and lower “anger”.
+ - Fig. 1: Review Text Length vs Helpfulness Ratio – longer reviews are not always more helpful; there is a sweet spot.
+ - Fig. 2: Star Rating vs Helpfulness Ratio – very low (1 star) and very high (5 star) reviews tend to be more helpful than middle ratings.
+ - Fig. 3: Review Text Length vs Star Rating – shows how review length varies with rating.
+ - Fig. 4: Average BERT Emotion Scores by Helpfulness – helpful reviews have slightly higher “joy” and “surprise” scores, and lower “anger”.
 
 ROC Curve – shows how well the model separates helpful from not‑helpful reviews.
 
