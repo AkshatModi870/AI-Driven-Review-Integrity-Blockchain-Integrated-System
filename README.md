@@ -181,7 +181,7 @@ ROC Curve – shows how well the model separates helpful from not‑helpful revi
 
 Rewards visualisation – which products got the most rewards, and the distribution of helpfulness ratios.
 
-## What the “prediction chain” proves
+## What the “prediction chain” proves?
 
 The chain (a list of blocks) demonstrates immutability:
 
@@ -191,7 +191,7 @@ The chain (a list of blocks) demonstrates immutability:
 
 In a real system, this could be used to audit model predictions for regulatory compliance (e.g., finance, healthcare).
 
-## What the rewards system shows
+## What the rewards system shows?
 
 The rewards system is a simple business rule:
 
