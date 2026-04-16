@@ -122,5 +122,95 @@ Alternatively, mount Google Drive:
 ```python
 from google.colab import drive
 drive.mount('/content/drive')
+```
 
 and copy the file to /content/.
+
+### Step 3 – Copy the entire code
+
+Copy all the code from the repository (or from this README’s code block) into a single Colab cell.
+
+### Step 4 – Run the cell
+
+Click the Run button. The first few cells will install required libraries (vaderSentiment, text2emotion, transformers, torch, etc.). This may take 2‑3 minutes.
+
+After that, the code will:
+
+ - Load and clean the data
+ - Classify products into categories
+ - Extract TF‑IDF, sentiment, BERT emotions
+ - Train the XGBoost model
+ - Show evaluation metrics and ROC curve
+ - Build the prediction chain and display it
+ - Run the reviewer rewards system and generate discount codes
+
+### Step 5 – Test your own review
+
+At the end of the code, there is an interactive part where you can enter:
+
+ - An ASIN (must be one of the products in the dataset)
+ - A review text
+ - A star rating (1‑5)
+ - A summary (optional)
+
+The model will predict whether that review would be helpful or not.
+
+Example:
+
+Enter ASIN (must be from the dataset): B00006I5VH
+Enter Review Text: This microphone is amazing. Clear sound, easy to set up.
+Enter Overall Rating (1-5): 5
+Enter Summary (optional): Great mic
+
+Output:
+
+✅ Helpful review detected! You have to modify your product.
+🛍️ Product Category: MICROPHONE
+🎯 Predicted Helpfulness Score: 0.87
+
+## Understanding the output graphs
+
+The code produces several figures:
+
+Fig. 1: Review Text Length vs Helpfulness Ratio – longer reviews are not always more helpful; there is a sweet spot.
+Fig. 2: Star Rating vs Helpfulness Ratio – very low (1 star) and very high (5 star) reviews tend to be more helpful than middle ratings.
+Fig. 3: Review Text Length vs Star Rating – shows how review length varies with rating.
+Fig. 4: Average BERT Emotion Scores by Helpfulness – helpful reviews have slightly higher “joy” and “surprise” scores, and lower “anger”.
+
+ROC Curve – shows how well the model separates helpful from not‑helpful reviews.
+
+Rewards visualisation – which products got the most rewards, and the distribution of helpfulness ratios.
+
+## What the “prediction chain” proves
+
+The chain (a list of blocks) demonstrates immutability:
+
+ - Each block stores the hash of the previous block.
+ - If you change any block, the hash of that block changes, and all following blocks become invalid.
+ - The code includes a verify_chain() function that checks the integrity.
+
+In a real system, this could be used to audit model predictions for regulatory compliance (e.g., finance, healthcare).
+
+## What the rewards system shows
+
+The rewards system is a simple business rule:
+
+ - Only reviews that are both truly helpful (by human votes) and predicted as helpful get points.
+ - This encourages reviewers to write clear, useful reviews.
+ - Discount codes are generated automatically and expire in 30 days.
+
+## Summary of business decisions
+
+ - If you want to promote helpful reviews quickly – use the model’s prediction (probability > 0.5) to re‑rank reviews before any human votes arrive.
+ - If you want to reward high‑quality reviewers – use the combined rule (actual helpful ratio + model prediction) to issue points/discounts. This avoids rewarding reviews that are long but useless.
+ - If you need auditability – use the prediction chain to prove that no prediction was altered after it was made.
+
+## License
+
+This project is open source. You may use it for learning or teaching.
+
+## Author
+
+AkshatModi 
+
+---
