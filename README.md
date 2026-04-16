@@ -1,4 +1,4 @@
-# Amazon Review Helpfulness Predictor – A Complete Machine Learning Project
+# AI-Driven-Review-Integrity-Blockchain-Integrated-System – A Machine Learning Project
 
 ## What is this project?
 
